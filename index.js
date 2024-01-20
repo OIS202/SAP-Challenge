@@ -14,7 +14,6 @@ fs.createReadStream(filePath)
   .on('data', (data) => {
     // Process each row of the CSV data
     const bookingDate = data[0];
-    console.log(typeof bookingDate)
     const appointmentDate = data[1];
     const vehicleType = data[2];
     const bookingType = bookingDate === appointmentDate ? 'Walk-in' : 'Booking';
