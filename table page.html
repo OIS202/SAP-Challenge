@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sales Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+
+            background-color: #005A9C;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header img {
+            width: 120px;
+            /* Adjust as needed */
+        }
+
+        .table-container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #e7e7e7;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="/sap-logo-623AE1C1A3-seeklogo.com.png" alt="SAP Logo">
+        <div>
+            <button class="button">Print</button>
+            <button class="button">Export</button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <!-- Table Head -->
+            <thead>
+                <tr>
+                    <th>Cars Types</th>
+                    <th>Compact Car</th>
+                    <th>Medium Car</th>
+                    <th>FullSize Car</th>
+                    <th>Class Truck 1</th>
+                    <th>Class Truck 2</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                <tr>
+                    <td>Total Revenue</td>
+                    <td>$190.00</td>
+                    <td>-$190.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                </tr>
+                <tr>
+                    <td>Total Loss</td>
+                    <td>$190.00</td>
+                    <td>-$190.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                </tr>
+                <tr>
+                    <td>Turned away customers</td>
+                    <td>$190.00</td>
+                    <td>-$190.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                </tr>
+                <tr>
+                    <td>Accepted Customers</td>
+                    <td>$190.00</td>
+                    <td>-$190.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                </tr>
+                <!-- More rows would go here -->
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

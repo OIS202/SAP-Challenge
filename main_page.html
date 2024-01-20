@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Center content vertically */
+
+        }
+
+        .header {
+            width: 100%;
+            background-color: #005A9C;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header img {
+            height: 60px;
+            /* Adjust the logo height */
+            margin-left: 20px;
+            /* Add some space from the left edge */
+        }
+
+        .import-container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 40px;
+            margin-top: 30px;
+            /* Space from the header */
+            width: 300px;
+            /* Set a fixed width for the import container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            /* Center the button horizontally */
+            align-items: center;
+            /* Center the button vertically */
+            flex-direction: column;
+            /* Stack elements vertically */
+            width: 50%;
+            /* Adjust the width as needed */
+            max-width: 600px;
+        }
+
+        .import-button {
+            border: none;
+            padding: 20px 50px;
+            /* Increase padding for a larger button */
+            background-color: #0056b3;
+            color: white;
+            border-radius: 10px;
+            /* Adjust border-radius for a more rounded button */
+            cursor: pointer;
+            font-size: 20px;
+            /* Increase font size for larger text */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            /* Increase gap for more space between icon and text */
+            width: 100%;
+            /* Button width relative to its container */
+            box-sizing: border-box;
+        }
+
+        .import-button:hover {
+            background-color: #004494;
+        }
+
+        .import-button:active {
+            background-color: #003875;
+        }
+
+        .import-icon {
+            font-size: 1.5rem;
+            /* Use rem for consistent scaling */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="/sap-logo-623AE1C1A3-seeklogo.com.png" alt="SAP Logo">
+    </div>
+
+    <div class="import-container">
+        <button class="import-button">
+            <span class="import-icon">📁</span> <!-- Replace with SVG icon if available -->
+            Import your CSV File Here
+        </button>
+        <input type="file" id="csvFile" accept=".csv" style="display: none;" />
+    </div>
+
+    <script>
+        document.querySelector('.import-button').addEventListener('click', function () {
+            document.getElementById('csvFile').click();
+        });
+    </script>
+
+</body>
+
+</html>
