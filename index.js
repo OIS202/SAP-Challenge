@@ -2,7 +2,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const Booking = require("./Booking");
 
-const filePath = "/Users/khale/SAP-Challenge/datafile.csv";
+const filePath = "../SAP-Challenge/datafile.csv";
 
 const bookings = [];
 
@@ -35,7 +35,7 @@ fs.createReadStream(filePath)
   .on("end", () => {
     // The 'end' event indicates that all rows have been read
     bookings.sort((a, b) => new Date(a.bookingDate) - new Date(b.bookingDate));
-    // console.log("All bookings processed:", bookings);
+    console.log("All bookings processed:", bookings);
     // Perform further processing here
   })
   .on("error", (error) => {
