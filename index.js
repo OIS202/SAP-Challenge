@@ -14,6 +14,7 @@ fs.createReadStream(filePath)
   .on('data', (data) => {
     // Process each row of the CSV data
     const bookingDate = data[0];
+    console.log(typeof bookingDate)
     const appointmentDate = data[1];
     const vehicleType = data[2];
     const bookingType = bookingDate === appointmentDate ? 'Walk-in' : 'Booking';
@@ -21,17 +22,20 @@ fs.createReadStream(filePath)
     // Create a Booking instance
     const currentBooking = new Booking(bookingDate, appointmentDate, vehicleType, bookingType);
 
-    // Display details or perform further processing
-    currentBooking.displayBookingDetails();
-
     // Optionally, store the Booking instance in an array
     bookings.push(currentBooking);
   })
   .on('end', () => {
     // The 'end' event indicates that all rows have been read
+    bookings.sort((a, b) => new Date(a.bookingDate) - new Date(b.bookingDate));
     console.log('All bookings processed:', bookings);
     // Perform further processing here
   })
   .on('error', (error) => {
     console.error('Error reading the CSV file:', error);
   });
+
+
+
+
+
