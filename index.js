@@ -21,12 +21,13 @@ const processCSV = () => {
         const bookingDate = data[0];
         const appointmentDate = data[1];
         const vehicleType = data[2];
-        const bookingType =
-          bookingDate === appointmentDate ? "Walk-in" : "Booking";
-
-        // Convert date strings to Date objects
         const bookingDateObj = new Date(bookingDate);
         const appointmentDateObj = new Date(appointmentDate);
+        const bookingType =
+          bookingDateObj.getTime() === appointmentDateObj.getTime() ? "Walk-in" : "Booking";
+
+        // Convert date strings to Date objects
+        
 
         // Create a Booking instance
         const currentBooking = new Booking(
@@ -42,7 +43,7 @@ const processCSV = () => {
       .on("end", () => {
         // The 'end' event indicates that all rows have been read
         bookings.sort((a, b) => a.bookingDate - b.bookingDate);
-        console.log(bookings)
+        // console.log(bookings)
         // Resolve the promise with the processed bookings
         resolve(bookings);
       })
@@ -69,8 +70,24 @@ const processBookings = (bookings) => {
       return;
     }
 
+    if (appointmentTime > 19) {
+        rejectedBookings.push({
+          booking: currentBooking,
+          reason: "Appointment time is after 7pm",
+        });
+        return;
+      }
+
+    if (currentBooking.appointmentDate.getTime() <= currentBooking.bookingDate.getTime()) {
+    rejectedBookings.push({
+        booking: currentBooking,
+        reason: "Appointment time is after 7pm",
+    });
+    return;
+    }
+
     // Criteria 2: Appointment time + service time is less than 7pm
-    const serviceTime = 2; // Assuming service time is 2 hours, adjust as needed
+    const serviceTime = currentBooking.serviceTime; // Assuming service time is 2 hours, adjust as needed
     const endTime = appointmentTime + serviceTime;
     if (endTime > 19) {
       rejectedBookings.push({
@@ -95,7 +112,8 @@ const processBookings = (bookings) => {
 // Use the Promise to ensure processing happens after CSV parsing is complete
 processCSV()
   .then((bookings) => {
-    console.log("here")
+    const walkIns = bookings.filter((booking) => booking.bookingType === 'Walk-in');
+    bookings = bookings.filter((booking) => booking.bookingType !== 'Walk-in');
     const { approvedBookings, rejectedBookings } = processBookings(bookings);
     console.log("Approved Bookings:", approvedBookings.length);
     console.log("Rejected Bookings:", rejectedBookings.length);
