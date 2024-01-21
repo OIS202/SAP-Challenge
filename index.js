@@ -42,7 +42,8 @@ const processCSV = () => {
       })
       .on("end", () => {
         // The 'end' event indicates that all rows have been read
-        bookings.sort((a, b) => a.bookingDate - b.bookingDate);
+        bookings.sort((a, b) => a.appointmentDate - b.appointmentDate);
+        console.log(bookings)
         // console.log(bookings)
         // Resolve the promise with the processed bookings
         resolve(bookings);
@@ -105,20 +106,47 @@ const processBookings = (bookings) => {
     approvedBookings.push(currentBooking);
   });
 
-
   // Additional processing or logging can be done here
 
   return { approvedBookings, rejectedBookings };
 };
 
+const dayByDayOctober = (bookings) => {
+    let bays = Array.from({ length: 10 });
+    let dayBookings = [];
+    const octoberFirst = new Date(2022, 9, 1);
+
+// Getting the last day of October by setting the day to 0 of November
+    const novemberFirst = new Date(2022, 10, 1);
+    const lastDayOfOctober = new Date(novemberFirst - 1);
+
+    // Loop through all days of October
+    for (let day = octoberFirst; day <= lastDayOfOctober; day.setDate(day.getDate() + 1)) {
+        let minute = (1/60);
+        let firstMinute = 7 + minute;
+        for(let i = 1;i<=720;i++){
+            let currentTime = 7+(i/60);
+            const hours = Math.floor(fractionalHours);
+             const minutes = Math.round((fractionalHours % 1) * 60);
+
+    const dateObject = new Date();
+    dateObject.setHours(hours, minutes, 0, 0);
+            bays[0] = 1;
+            console.log(bays[0])
+        }
+
+    }
+}
+
 // Use the Promise to ensure processing happens after CSV parsing is complete
 processCSV()
   .then((bookings) => {
+    const { approvedBookings, rejectedBookings } = processBookings(bookings);
     const walkIns = bookings.filter((booking) => booking.bookingType === 'Walk-in');
     bookings = bookings.filter((booking) => booking.bookingType !== 'Walk-in');
-    const { approvedBookings, rejectedBookings } = processBookings(bookings);
     console.log("Approved Bookings:", approvedBookings.length);
     console.log("Rejected Bookings:", rejectedBookings.length);
+    dayByDayOctober(approvedBookings)
   })
   .catch((error) => {
     console.error("Error processing CSV:", error);
