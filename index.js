@@ -61,7 +61,9 @@ const processBookings = (bookings) => {
   bookings.forEach((currentBooking) => {
 
     // Criteria 1: Appointment time is greater than 7am
-    const appointmentTime = currentBooking.appointmentDate.getHours();
+    const appointmentTimeHours = currentBooking.appointmentDate.getHours();
+    const appointmentDateMinutes = currentBooking.appointmentDate.getMinutes();
+    const appointmentTime = appointmentTimeHours + (appointmentDateMinutes/60)
     if (appointmentTime < 7) {
       rejectedBookings.push({
         booking: currentBooking,
